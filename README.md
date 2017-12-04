@@ -100,6 +100,7 @@ seat: string
 
 Maximum time to solve this tests: **4H**
 
-* **Functionality**: 70%
+* **Implementation *(You implement the logic of all requirements)***: 25%
+* **Functionality *(The implemented logic works properly)***: 45%
 * **Test**: 15%
-* **Quality** Code: 15%
+* **Quality Code**: 15%
