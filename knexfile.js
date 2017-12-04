@@ -3,7 +3,7 @@
  */
 module.exports = {
   client: 'pg',
-  connection: 'your_pg_url_connection_url',
+  connection: 'postgres://gbdjzqmr:V4nFgdodE-HeObt6jCsPt9j4z_Wht1Na@baasu.db.elephantsql.com:5432/gbdjzqmr',
   searchPath: 'public',
   pool: {
     min: 2,
