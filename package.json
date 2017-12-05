@@ -4,7 +4,7 @@
   "description": "This repo exists to evaluate the acquire knowledge by my pupils in his third and fourth training weeks",
   "main": "server/src/index.js",
   "scripts": {
-    "test": "mocha ./server/src/**/*.spec.js"
+    "test": "mocha --exit ./server/src/**/*.spec.js"
   },
   "repository": {
     "type": "git",

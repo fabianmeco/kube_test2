@@ -10,7 +10,7 @@ Assistant.findAll = function(query){
 }
 
 Assistant.findLike = function(query){
-    return knex.select('*').from('assistants').where('name', 'like', '%'+query+'%').orWhere('email', 'like', '%'+query+'%').orWhere('cid', 'like', '%'+query+'%')
+    return knex.select('*').from('assistants').whereRaw(`LOWER(name) LIKE ?`, [`%${query}%`]).orWhereRaw(`LOWER(email) LIKE ?`, [`%${query}%`]).orWhereRaw(`LOWER(cid) LIKE ? `, [`%${query}%`])
 }
 
 Assistant.find = function(query){
@@ -23,6 +23,10 @@ Assistant.update = function(query, body){
 
 Assistant.delete = function(queryid){
     return knex('assistants').where(queryid).del();
+}
+
+Assistant.deleteAll = function(){
+    return knex('assistants').del();
 }
 
 module.exports = Assistant;

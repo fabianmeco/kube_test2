@@ -27,7 +27,7 @@ exports.post = function(req, res){
 }
 
 exports.get = function(req, res){
-    return assistantModel.findLike(req.query)
+    return assistantModel.findLike(req.query.request)
     .then(values => res.json(values))
     .catch(err => res.status(500).send({ "name": "error", "message": err.message }));
 }

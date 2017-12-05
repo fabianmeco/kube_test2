@@ -10,7 +10,7 @@ Event.findAll = function(query){
 }
 
 Event.findLike = function(query){
-    return knex.select('*').from('events').where('name', 'like', '%'+query+'%').orWhere('city', 'like', '%'+query+'%')
+    return knex.select('*').from('events').whereRaw(`LOWER(name) LIKE ?`, [`%${query}%`]).orWhereRaw(`LOWER(city) LIKE ?`, [`%${query}%`])
 }
 
 Event.find= function(query){

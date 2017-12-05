@@ -1,0 +1,47 @@
+<div class="container">
+    <p>
+        <ngb-alert *ngIf="!alertopen" [type]="alertType" (close)="alertClose()">{{ message }}</ngb-alert>
+      </p>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-1">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Filter Events" aria-label="Filter Events" aria-describedby="basic-addon1"
+          (keyup)="onKeyEvent($event)">
+      </div>
+      <div>
+        <label for="sel1">Events:</label>
+        <select class="form-control" id="sel1" [(ngModel)]="event_id">
+          <option *ngFor="let event of filterEvents" value="{{event.id}}">{{event.name}}, {{event.city}}, {{event.date}}</option>
+        </select>
+      </div>
+      <div class="seat">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Seat</span>
+          <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="seat">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Filter Users" aria-label="Filter User" aria-describedby="basic-addon1"
+          (keyup)="onKeyUser($event)">
+      </div>
+      <div>
+        <label for="sel1">Users:</label>
+        <select class="form-control" id="sel1" [(ngModel)]="user_id">
+          <option *ngFor="let user of filterUsers" value="{{user.id}}">{{user.name}}, {{user.email}}, {{user.cid}}</option>
+        </select>
+      </div>
+      <div class="seat">
+        <button type="button" class="btn btn-primary" (click)="onClickCreate()">Create User</button>
+        <button type="button" class="btn btn-success" (click)="onClickCreateTicket()">Create Ticket</button>        
+      </div>
+    </div>
+  </div>
+</div>

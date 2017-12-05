@@ -16,6 +16,6 @@ instanceRouter.put('/', eventController.put);
 
 instanceRouter.delete('/', eventController.delete);
 
-instanceRouter.use('/ticket', ticketRoute);
+instanceRouter.use('/assistant', ticketRoute);
 
 module.exports = router;
