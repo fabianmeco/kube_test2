@@ -2,7 +2,7 @@ const knex = require('../helper/knex');
 const Event = {};
 
 Event.create = function(event){
-    return knex('events').insert(event);
+    return knex('events').returning('name').insert(event);
 }
 
 Event.findAll = function(query){
@@ -18,11 +18,15 @@ Event.find= function(query){
 }
 
 Event.update = function(query, body){
-    return knex('events').where(query).update(body).first();    
+    return knex('events').where(query).update(body);    
 }
 
 Event.delete = function(queryid){
-    return knex('events').where(queryid).del();
+    return knex('events').where(queryid).del().first();
+}
+
+Event.deleteAll = function(){
+    return knex('events').del();
 }
 
 module.exports = Event;

@@ -18,11 +18,11 @@ Assistant.find = function(query){
 }
 
 Assistant.update = function(query, body){
-    return knex('assistants').where(query).update(body).first();    
+    return knex('assistants').where(query).update(body);    
 }
 
 Assistant.delete = function(queryid){
-    return knex('assistants').where(queryid).del();
+    return knex('assistants').where(queryid).del().first();
 }
 
 Assistant.deleteAll = function(){

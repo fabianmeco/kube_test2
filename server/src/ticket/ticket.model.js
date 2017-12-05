@@ -19,11 +19,15 @@ Ticket.findSameDate = function(id_assistant, date){
 }
 
 Ticket.update = function(query, body){
-    return knex('tickets').where(query).update(body).first();    
+    return knex('tickets').where(query).update(body);    
 }
 
 Ticket.delete = function(queryid){
-    return knex('tickets').where(queryid).del();
+    return knex('tickets').where(queryid).del().first();
+}
+
+Ticket.deleteAll = function(){
+    return knex('tickets').del();
 }
 
 module.exports = Ticket;
