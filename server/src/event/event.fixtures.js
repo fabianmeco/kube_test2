@@ -1,6 +1,7 @@
 module.exports = {
     post: {
         event: {
+            id: 15,
             name: "Iron Maiden Tour Locombia",
             city: "Cucuta",
             date: "2018-06-06 22:00"

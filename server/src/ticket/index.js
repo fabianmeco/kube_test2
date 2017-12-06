@@ -7,7 +7,7 @@ router.post('/', ticketController.post);
 
 router.get('/', ticketController.get)
 
-router.use('/:id', ticketController.getOneMiddleware, instanceRouter);
+router.use('/:ticketId', ticketController.getOneMiddleware, instanceRouter);
 
 instanceRouter.get('/', ticketController.getOne);
 

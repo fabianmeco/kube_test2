@@ -18,7 +18,7 @@ const schema_update = joi.object().keys({
 })
 
 exports.post = function(req, res){
-    return joi.validate(req.body, schema)
+    return joi.validate(req.body, schema,{allowUnknown:true})
     .then(function(){
         return eventModel.create(req.body)
         .then(newEvent => res.json(newEvent));
@@ -53,7 +53,7 @@ exports.getOne = function(req, res){
 }
 
 exports.put = function(req, res){
-    return joi.validate(req.body, schema_update)
+    return joi.validate(req.body, schema_update,{allowUnknown:true})
     .then(function(){
         return eventModel.update({id: req.event.id}, req.body)        
         .then(newEvent => res.json(newEvent));
@@ -69,6 +69,8 @@ exports.put = function(req, res){
 
 exports.delete = function(req, res){
     return eventModel.delete({id:req.event.id})
-    .then(event => res.json({ "name": "removed", "message": "Assistant removed" }))
+    .then(event => {
+        res.json({ "name": "removed", "message": "Assistant removed" })       
+    })
     .catch(err => res.status(500).send({ "name": "error", "message": err.message }));
 }

@@ -4,7 +4,7 @@
     Welcome to {{ title }}!
   </h1>  
 </div>
-<app-filter></app-filter>
-<app-create-assist></app-create-assist>
+<app-filter [hideForm]="hideForm" (onHideForm)= "onHideForm($event)"></app-filter>
+<app-create-assist *ngIf="!hideForm" ></app-create-assist>
 
 

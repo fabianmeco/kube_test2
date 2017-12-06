@@ -22,7 +22,7 @@ Event.update = function(query, body){
 }
 
 Event.delete = function(queryid){
-    return knex('events').where(queryid).del().first();
+    return knex('events').where(queryid).del();
 }
 
 Event.deleteAll = function(){

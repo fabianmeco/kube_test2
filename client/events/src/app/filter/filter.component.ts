@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -15,11 +15,21 @@ export class FilterComponent implements OnInit {
   message:string;
   alertopen:boolean=true;
   alertType:string;
+  @Input() hideForm:boolean;
+  @Output() onHideForm = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    
+    this.http.get<event>('http://localhost:3000/event').subscribe(
+      data=> {this.filterEvents = data;}
+    );
+    this.http.get<user>('http://localhost:3000/assistant').subscribe(
+      data=> {this.filterUsers = data;}
+    );
+  }
+  onClickForm(){
+    this.onHideForm.emit(!this.hideForm);
   }
 
   onKeyEvent(event:any){
@@ -45,8 +55,7 @@ export class FilterComponent implements OnInit {
       this.alertType='danger';
       this.alertopen=false;
     })
-  }   
-    
+  }       
 
   }
   
