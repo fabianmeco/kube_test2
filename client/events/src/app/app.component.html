@@ -5,6 +5,6 @@
   </h1>  
 </div>
 <app-filter [hideForm]="hideForm" (onHideForm)= "onHideForm($event)"></app-filter>
-<app-create-assist *ngIf="!hideForm" ></app-create-assist>
+<app-create-assist [hideForm]="hideForm" (onHideForm)= "onHideForm($event)" *ngIf="!hideForm" ></app-create-assist>
 
 

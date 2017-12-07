@@ -15,6 +15,11 @@ export class FilterComponent implements OnInit {
   message:string;
   alertopen:boolean=true;
   alertType:string;
+  //Define when create ticket button is hidden or not
+  hiddenCreateTicket: boolean=false;
+  changedUser: boolean = false;
+  changedEvent: boolean = false;
+  // Defines when the create user form is hidden or not
   @Input() hideForm:boolean;
   @Output() onHideForm = new EventEmitter<boolean>();
 
@@ -28,8 +33,22 @@ export class FilterComponent implements OnInit {
       data=> {this.filterUsers = data;}
     );
   }
+  //Method to hide or show the create assistant form
   onClickForm(){
     this.onHideForm.emit(!this.hideForm);
+  }
+  //Method to hide or show create ticket button
+  onChangeUser(){
+    this.changedUser=true;
+    if(this.changedUser&&this.changedEvent){
+      this.hiddenCreateTicket=true;
+    }
+  }
+  onChangeEvent(){
+    this.changedEvent=true;
+    if(this.changedUser&&this.changedEvent){
+      this.hiddenCreateTicket=true;
+    }
   }
 
   onKeyEvent(event:any){
@@ -43,18 +62,22 @@ export class FilterComponent implements OnInit {
     );
   }
 
-  onClickCreateTicket(){
+  onClickCreateTicket(){    
     this.http.post('http://localhost:3000/event/'+this.event_id+"/assistant/", {seat:this.seat, assistant_id:this.user_id})
     .subscribe(
     res => {
       this.message="Ticket registered successfully"
       this.alertType='success';
       this.alertopen=false;
+      this.hiddenCreateTicket=false;
     }, err => {
       this.message=err.error.message;
       this.alertType='danger';
       this.alertopen=false;
     })
+  }
+  alertClose(){
+    this.alertopen=true;
   }       
 
   }

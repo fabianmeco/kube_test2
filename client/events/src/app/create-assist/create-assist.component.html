@@ -6,13 +6,13 @@
     <div class="col-sm-4 col-sm-offset-1">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-circle" aria-hidden="true"></i> Name</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="name">
+            <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="name" #name>
           </div>
     </div>
     <div class="col-sm-4 col-sm-offset-2">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1"><i class="fa fa-id-card" aria-hidden="true"></i> CID</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="cid">
+            <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="cid" #cid>
           </div>
     </div>
   </div>
@@ -20,19 +20,22 @@
       <div class="col-sm-4 col-sm-offset-1">
           <div class="input-group">
               <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope" aria-hidden="true"></i> Email</span>
-              <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="email">
+              <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="email" #email>
             </div>
       </div>
       <div class="col-sm-4 col-sm-offset-2">
           <div class="input-group">
               <span class="input-group-addon" id="basic-addon1"><i class="fa fa-address-card" aria-hidden="true"> Address</i></span>
-              <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="address" >
+              <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="address" #address>
             </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-2 col-sm-offset-5">
-        <button type="button" class="btn btn-success" (click)="onSaveUser()">Save User</button>
+        <div class="col-sm-3 col-sm-offset-5">
+      <div class="btn-group">
+        <button type="button" class="btn btn-success" (click)="onSaveUser()">Save User</button> 
+        <button type="button" class="btn btn-warning" (click)="onCancelSave()">Cancel</button>
+      </div>
       </div>
     </div>
 </div>

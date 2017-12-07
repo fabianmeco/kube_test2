@@ -13,7 +13,7 @@
       </div>
       <div>
         <label for="sel1">Events:</label>
-        <select class="form-control" id="sel1" [(ngModel)]="event_id">
+        <select class="form-control" id="sel1" [(ngModel)]="event_id" (ngModelChange)="onChangeEvent()">
           <option *ngFor="let event of filterEvents" value="{{event.id}}">{{event.name}}, {{event.city}}, {{event.date}}</option>
         </select>
       </div>
@@ -34,13 +34,13 @@
       </div>
       <div>
         <label for="sel1">Users:</label>
-        <select class="form-control" id="sel1" [(ngModel)]="user_id">
+        <select class="form-control" id="sel1" [(ngModel)]="user_id" (ngModelChange)="onChangeUser()">
           <option *ngFor="let user of filterUsers" value="{{user.id}}">{{user.name}}, {{user.email}}, {{user.cid}}</option>
         </select>
       </div>
       <div class="seat">
-        <button type="button" class="btn btn-primary" (click)="onClickForm()" >Create User</button>
-        <button type="button" class="btn btn-success" (click)="onClickCreateTicket()">Create Ticket</button>        
+        <button type="button" class="btn btn-primary" (click)="onClickForm()" *ngIf="hideForm">Create User</button>
+        <button type="button" class="btn btn-success" (click)="onClickCreateTicket()" *ngIf="hiddenCreateTicket">Create Ticket</button>        
       </div>
     </div>
   </div>

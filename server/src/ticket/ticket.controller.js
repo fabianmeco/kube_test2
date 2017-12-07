@@ -33,9 +33,7 @@ exports.post = function (req, res) {
     })
         .catch(err => {
             if(err.isJoi){
-                return res.status(422).send(err.details.map(function (error) {
-                    return { name: error.context.key, message: error.message }
-                }));
+                return res.status(422).send({ name: err.details[0].context.key, message: err.details[0].message });
             }
             res.status(500).send({ "name": "error", "message": err.message })
         });
@@ -86,9 +84,7 @@ exports.put = function (req, res) {
         .catch(err => {
             if(err.isJoi){
                 console.log('maybe here')
-                return res.status(422).send(err.details.map(function (error) {
-                    return { name: error.context.key, message: error.message }
-                }));
+                return res.status(422).send({ name: err.details[0].context.key, message: err.details[0].message });
             }
             res.status(500).send({ "name": "error", "message": err.message })
         });
