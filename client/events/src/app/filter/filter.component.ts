@@ -7,8 +7,8 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  filterEvents : event;
-  filterUsers : user;
+  filterEvents : Event;
+  filterUsers : User;
   user_id:number;
   event_id:number;
   seat:string;
@@ -26,10 +26,10 @@ export class FilterComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<event>('http://localhost:3000/event').subscribe(
+    this.http.get<Event>('http://localhost:3000/event').subscribe(
       data=> {this.filterEvents = data;}
     );
-    this.http.get<user>('http://localhost:3000/assistant').subscribe(
+    this.http.get<User>('http://localhost:3000/assistant').subscribe(
       data=> {this.filterUsers = data;}
     );
   }
@@ -51,13 +51,13 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  onKeyEvent(event:any){
-    this.http.get<event>('http://localhost:3000/event?request='+event.target.value).subscribe(
+  onKeyEvent(event:string){
+    this.http.get<Event>('http://localhost:3000/event?request='+event).subscribe(
       data=> {this.filterEvents = data;}
     );
   }
-  onKeyUser(event:any){
-    this.http.get<user>('http://localhost:3000/assistant?request='+event.target.value).subscribe(
+  onKeyUser(event:string){
+    this.http.get<User>('http://localhost:3000/assistant?request='+event).subscribe(
       data=> {this.filterUsers = data;}
     );
   }
@@ -82,14 +82,14 @@ export class FilterComponent implements OnInit {
 
   }
   
-interface event{
+interface Event{
   id:number;
   name:string;
   city:string;
   date: Date;
 }
 
-interface user{
+interface User{
   id:number;
   name:string;
   cid:string;

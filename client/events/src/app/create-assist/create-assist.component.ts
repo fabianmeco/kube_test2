@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output, ViewChild, Renderer, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { error } from 'selenium-webdriver';
 
 
 @Component({
@@ -9,13 +10,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateAssistComponent implements OnInit {
 
-  name: string;
-  cid: string;
-  address: string;
-  email: string;
+  user: User = <User> {}
+
   message:string;
   alertType:string;
   alertopen:boolean = true;
+
+  errors:object = {
+  }
 
   @Input() hideForm:boolean;
   @Output() onHideForm = new EventEmitter<boolean>();
@@ -31,7 +33,7 @@ export class CreateAssistComponent implements OnInit {
   }
 
   onSaveUser() {
-    this.http.post('http://localhost:3000/assistant', { name: this.name, cid: this.cid, address: this.address, email: this.email })
+    this.http.post('http://localhost:3000/assistant', { name: this.user.name, cid: this.user.cid, address: this.user.address, email: this.user.email })
       .subscribe(
       res => {
         this.onHideForm.emit(!this.hideForm);
@@ -42,6 +44,8 @@ export class CreateAssistComponent implements OnInit {
         this.message=err.error.message;
         this.alertType='danger';
         this.alertopen=false;
+        this.errors[err.error.name] = true;
+
         /* switch(err.error.name){
           case 'name':
             this.nameid.nativeElement.classList.add('is-invalid');
@@ -63,7 +67,7 @@ export class CreateAssistComponent implements OnInit {
   }
 
 }
-interface user {
+interface User {
   name: string;
   cid: string;
   email: string;

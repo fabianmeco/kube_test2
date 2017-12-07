@@ -9,7 +9,7 @@
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
         <input type="text" class="form-control" placeholder="Filter Events" aria-label="Filter Events" aria-describedby="basic-addon1"
-          (keyup)="onKeyEvent($event)">
+         #eventsFilter (keyup)="onKeyEvent(eventsFilter.value)">
       </div>
       <div>
         <label for="sel1">Events:</label>
@@ -30,7 +30,7 @@
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
         <input type="text" class="form-control" placeholder="Filter Users" aria-label="Filter User" aria-describedby="basic-addon1"
-          (keyup)="onKeyUser($event)">
+          #userFilter (keyup)="onKeyUser(userFilter.value)">
       </div>
       <div>
         <label for="sel1">Users:</label>

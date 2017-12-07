@@ -1,41 +1,62 @@
-<div class="container" >
+<div class="container">
     <p>
         <ngb-alert *ngIf="!alertopen" [type]="alertType" (close)="alertClose()">{{ message }}</ngb-alert>
-      </p>
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-1">
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-circle" aria-hidden="true"></i> Name</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="name" #name>
-          </div>
-    </div>
-    <div class="col-sm-4 col-sm-offset-2">
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-id-card" aria-hidden="true"></i> CID</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="cid" #cid>
-          </div>
-    </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-4 col-sm-offset-1">
-          <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope" aria-hidden="true"></i> Email</span>
-              <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="email" #email>
+    </p>
+    <form (ngSubmit)="onSaveUser(idname.value)" #createForm="ngForm">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <label class="input-group" for="createname">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i> Name</span>
+                    <input type="text" id="createname" name="name" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.name" required #name="ngModel">                    
+                </label> 
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    This field is required
+                </div>
             </div>
-      </div>
-      <div class="col-sm-4 col-sm-offset-2">
-          <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1"><i class="fa fa-address-card" aria-hidden="true"> Address</i></span>
-              <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="address" #address>
+            <div class="col-sm-4 col-sm-offset-2">
+                <label class="input-group" for="createcid">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-id-card" aria-hidden="true"></i> CID</span>
+                    <input type="text" id="createcid" name="cid" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.cid" required #cid="ngModel">                    
+                </label>
+                <div [hidden]="cid.valid || cid.pristine" class="alert alert-danger">
+                    This field is required
+                </div>                
             </div>
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3 col-sm-offset-5">
-      <div class="btn-group">
-        <button type="button" class="btn btn-success" (click)="onSaveUser()">Save User</button> 
-        <button type="button" class="btn btn-warning" (click)="onCancelSave()">Cancel</button>
-      </div>
-      </div>
-    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <label class="input-group" for="createmail">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Email</span>
+                    <input type="text" id="createmail" name="email" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.email"
+                        required #email="ngModel">                        
+                </label>
+                <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                    This field is required
+                </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-2">
+                <label class="input-group" for="createaddress">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-address-card" aria-hidden="true"> Address</i>
+                    </span>
+                    <input type="text" id="createaddress" name="address" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.address"
+                        required #address="ngModel">                        
+                </label>
+                <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+                    This field is required
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-5">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success">Save User</button>
+                    <button type="button" class="btn btn-warning" (click)="onCancelSave()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
