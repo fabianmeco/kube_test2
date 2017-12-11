@@ -27,7 +27,7 @@ exports.post = function (req, res) {
             return assistantModel.find({ cid: req.body.cid })
                 .then(function (found) {
                     if (found) {
-                        return res.status(422).send({ "name": "cid", "message": "Cid already registered" });
+                        return res.status(422).send([{ "name": "cid", "message": "Cid already registered" }]);
                     }
                     return assistantModel.create(req.body)
                         .then(newTeacher => res.json(newTeacher))
@@ -39,7 +39,7 @@ exports.post = function (req, res) {
                     return { name: error.context.key, message: error.message}})
                 );
             }
-            res.status(500).send({ "name": "error", "message": err.message })
+            res.status(500).send([{ "name": "error", "message": err.message }])
         });
 }
 
@@ -48,7 +48,7 @@ exports.get = function (req, res) {
     if (req.query.request) {
         return assistantModel.findLike(req.query.request)
             .then(values => res.json(values))
-            .catch(err => res.status(500).send({ "name": "error", "message": err.message }));
+            .catch(err => res.status(500).send([{ "name": "error", "message": err.message }]));
     }    
     return assistantModel.findAll({})
         .then(values => {
@@ -78,7 +78,7 @@ exports.put = function (req, res) {
             return assistantModel.find({ cid: req.body.cid })
                 .then(function (found) {
                     if (found && (found.id !== req.assistant.id)) {
-                        return res.status(422).send({ "name": "cid", "message": "Cid already registered" });
+                        return res.status(422).send([{ "name": "cid", "message": "Cid already registered" }]);
                     }
                     return assistantModel.update({ id: req.assistant.id }, req.body)
                         .then(newTeacher => res.json(newTeacher))
@@ -86,8 +86,9 @@ exports.put = function (req, res) {
         })
         .catch(err => {
             if (err.isJoi) {
-		
-                return res.status(422).send({ name: err.details[0].context.key, message: err.details[0].message });
+                return res.status(422).send(err.details.map(function(error){
+                    return { name: error.context.key, message: error.message}})
+                );		
             }
             res.status(500).send({ "name": "error", "message": err.message })
         });

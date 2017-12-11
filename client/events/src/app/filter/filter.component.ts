@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
+  styleUrls: ['./filter.component.less']
 })
 export class FilterComponent implements OnInit {
   filterEvents : Event;
@@ -21,7 +21,10 @@ export class FilterComponent implements OnInit {
   changedEvent: boolean = false;
   // Defines when the create user form is hidden or not
   @Input() hideForm:boolean;
+  @Input() successMessage:string;
+  @Input() showSuccessMessage:boolean;
   @Output() onHideForm = new EventEmitter<boolean>();
+  @Output() showMessageClose = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) { }
 
@@ -78,7 +81,10 @@ export class FilterComponent implements OnInit {
   }
   alertClose(){
     this.alertopen=true;
-  }       
+  }   
+  onShowMessageClose(){
+    this.showMessageClose.emit(false);
+  }
 
   }
   

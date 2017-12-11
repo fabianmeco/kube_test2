@@ -7,28 +7,22 @@ import { FormGroup } from '@angular/forms/src/model';
 @Component({
   selector: 'app-create-assist',
   templateUrl: './create-assist.component.html',
-  styleUrls: ['./create-assist.component.css']
+  styleUrls: ['./create-assist.component.less']
 })
 export class CreateAssistComponent implements OnInit {
   
 
   user: User = <User> {}
-
+  errors: Object = {}
   message:string;
   alertType:string;
   alertopen:boolean = true;
 
-  errors:object = {
-  }
-
   @Input() hideForm:boolean;
   @Output() onHideForm = new EventEmitter<boolean>();
-
- /*  @ViewChild('name') nameid;
-  @ViewChild('email') emailid;
-  @ViewChild('cid') cidid;
-  @ViewChild('address') addressid; */
-
+  @Output() onSuccessMessage = new EventEmitter<boolean>();
+  @ViewChild("createForm") form;
+ 
   constructor(private http: HttpClient, private renderer: Renderer) { }
 
   ngOnInit() {
@@ -36,21 +30,18 @@ export class CreateAssistComponent implements OnInit {
   }
 
   onSaveUser() {
-    this.errors = {};
     this.http.post('http://localhost:3000/assistant', { name: this.user.name, cid: this.user.cid, address: this.user.address, email: this.user.email })
       .subscribe(
       res => {
         this.onHideForm.emit(!this.hideForm);
-        this.message="Ticket registered successfully"
-        this.alertType='success';
-        this.alertopen=false;
-      }, err => {        
-        this.alertType='danger';
-        this.alertopen=false;
+        
+        this.onSuccessMessage.emit(true);
+      }, err => { 
         err.error.forEach(element => {
-          this.message+=element.message+'\n';
-          this.errors[element.name] = true;
+          this.errors[element.name] = element.message;
+          this.form.controls[element.name].setErrors({"serverError":true});                    
         });        
+        
       })
   }
   onCancelSave(){

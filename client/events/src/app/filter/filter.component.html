@@ -1,7 +1,14 @@
 <div class="container">
-    <p>
+    
         <ngb-alert *ngIf="!alertopen" [type]="alertType" (close)="alertClose()">{{ message }}</ngb-alert>
-      </p>
+        <!-- <ngb-alert *ngIf="showSuccessMessage" type="success" (close)="alertClose()">{{successMessage}}</ngb-alert>         -->
+        <div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible show" role="alert">
+          {{successMessage}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (close)="onShowMessageClose()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      
   <div class="row">
     <div class="col-sm-4 col-sm-offset-1">
       <div class="input-group">

@@ -8,21 +8,31 @@
                 <label class="input-group" for="createname">
                     <span class="input-group-addon" id="basic-addon1">
                         <i class="fa fa-user-circle" aria-hidden="true"></i> Name</span>
-                    <input type="text" id="createname" name="name" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.name" required #name="ngModel" [ngClass]="{'is-invalid': errors.name}">                    
+                    <input type="text" id="createname" name="name" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.name" required #name="ngModel" >                    
                 </label> 
-                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-                    This field is required
+                <div *ngIf="name.invalid && (name.touched || createForm.submitted)" class="alert alert-danger">
+                    <div *ngIf="name.errors.serverError" >
+                        {{errors['name']}}
+                    </div>
+                    <div *ngIf="name.errors.required">
+                        The name is required to register an assistant
+                    </div>
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-2">
                 <label class="input-group" for="createcid">
                     <span class="input-group-addon" id="basic-addon1">
                         <i class="fa fa-id-card" aria-hidden="true"></i> CID</span>
-                    <input type="text" id="createcid" name="cid" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.cid" required #cid="ngModel" [ngClass]="{'is-invalid': errors.cid}">                    
+                    <input type="text" id="createcid" name="cid" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.cid" required #cid="ngModel" >                    
                 </label>
-                <div [hidden]="cid.valid || cid.pristine" class="alert alert-danger">
-                    This field is required
-                </div>                
+                <div *ngIf="cid.invalid && (cid.touched || createForm.submitted)" class="alert alert-danger">
+                    <div *ngIf="cid.errors.serverError" >
+                        {{errors['cid']}}
+                    </div>
+                    <div *ngIf="cid.errors.required">
+                        The cid is required to register an assistant
+                    </div>
+                </div>              
             </div>
         </div>
         <div class="row">
@@ -31,10 +41,15 @@
                     <span class="input-group-addon" id="basic-addon1">
                         <i class="fa fa-envelope" aria-hidden="true"></i> Email</span>
                     <input type="text" id="createmail" name="email" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.email"
-                        required #email="ngModel" [ngClass]="{'is-invalid': errors.email}">                        
+                        required #email="ngModel" >                        
                 </label>
-                <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-                    This field is required
+                <div *ngIf="email.invalid && (email.touched || createForm.submitted)" class="alert alert-danger">
+                    <div *ngIf="email.errors.serverError" >
+                        {{errors['email']}}
+                    </div>
+                    <div *ngIf="email.errors.required">
+                        The email is required to register an assistant
+                    </div>                    
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-2">
@@ -43,10 +58,15 @@
                         <i class="fa fa-address-card" aria-hidden="true"> Address</i>
                     </span>
                     <input type="text" id="createaddress" name="address" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.address"
-                        required #address="ngModel" [ngClass]="{'is-invalid': errors.address}">                        
+                        required #address="ngModel" >                        
                 </label>
-                <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
-                    This field is required
+                <div *ngIf="address.invalid && (address.touched || createForm.submitted)" class="alert alert-danger">
+                    <div *ngIf="address.errors.serverError" >
+                        {{errors['address']}}
+                    </div>
+                    <div *ngIf="address.errors.required">
+                        The address is required to register an assistant
+                    </div>
                 </div>
             </div>
         </div>
