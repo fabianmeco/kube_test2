@@ -22,7 +22,7 @@ const schema_update = joi.object().keys({
 })
 
 exports.post = function (req, res) {
-    return joi.validate(req.body, schema)
+    return joi.validate(req.body, schema, { abortEarly: false } )
         .then(function () {
             return assistantModel.find({ cid: req.body.cid })
                 .then(function (found) {
@@ -35,7 +35,8 @@ exports.post = function (req, res) {
         })
         .catch(err => {
             if (err.isJoi) {
-                return res.status(422).send({ name: err.details[0].context.key, message: err.details[0].message}
+                return res.status(422).send(err.details.map(function(error){
+                    return { name: error.context.key, message: error.message}})
                 );
             }
             res.status(500).send({ "name": "error", "message": err.message })

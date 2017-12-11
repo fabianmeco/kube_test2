@@ -2,13 +2,13 @@
     <p>
         <ngb-alert *ngIf="!alertopen" [type]="alertType" (close)="alertClose()">{{ message }}</ngb-alert>
     </p>
-    <form (ngSubmit)="onSaveUser(idname.value)" #createForm="ngForm">
+    <form (ngSubmit)="onSaveUser()" #createForm="ngForm">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
                 <label class="input-group" for="createname">
                     <span class="input-group-addon" id="basic-addon1">
                         <i class="fa fa-user-circle" aria-hidden="true"></i> Name</span>
-                    <input type="text" id="createname" name="name" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.name" required #name="ngModel">                    
+                    <input type="text" id="createname" name="name" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.name" required #name="ngModel" [ngClass]="{'is-invalid': errors.name}">                    
                 </label> 
                 <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                     This field is required
@@ -18,7 +18,7 @@
                 <label class="input-group" for="createcid">
                     <span class="input-group-addon" id="basic-addon1">
                         <i class="fa fa-id-card" aria-hidden="true"></i> CID</span>
-                    <input type="text" id="createcid" name="cid" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.cid" required #cid="ngModel">                    
+                    <input type="text" id="createcid" name="cid" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.cid" required #cid="ngModel" [ngClass]="{'is-invalid': errors.cid}">                    
                 </label>
                 <div [hidden]="cid.valid || cid.pristine" class="alert alert-danger">
                     This field is required
@@ -31,7 +31,7 @@
                     <span class="input-group-addon" id="basic-addon1">
                         <i class="fa fa-envelope" aria-hidden="true"></i> Email</span>
                     <input type="text" id="createmail" name="email" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.email"
-                        required #email="ngModel">                        
+                        required #email="ngModel" [ngClass]="{'is-invalid': errors.email}">                        
                 </label>
                 <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
                     This field is required
@@ -43,7 +43,7 @@
                         <i class="fa fa-address-card" aria-hidden="true"> Address</i>
                     </span>
                     <input type="text" id="createaddress" name="address" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="user.address"
-                        required #address="ngModel">                        
+                        required #address="ngModel" [ngClass]="{'is-invalid': errors.address}">                        
                 </label>
                 <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
                     This field is required

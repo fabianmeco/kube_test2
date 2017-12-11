@@ -15,3 +15,6 @@
   .ng-invalid:not(form)  {
     border-right: 5px solid #a94442; /* red */
   }
+  .is-invalid{
+      border-color: #dc3545
+  }

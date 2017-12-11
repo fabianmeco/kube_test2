@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CreateAssistComponent } from './create-assist/create-assist.component';
 import { FilterComponent } from './filter/filter.component';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { FilterComponent } from './filter/filter.component';
     BrowserModule,
     NgbModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
