@@ -7,7 +7,7 @@
           <div class="col-sm-4 col-sm-offset-1">
               <label class="input-group" for="createventname">
                   <span class="input-group-addon" id="basic-addon1">
-                      <i class="fa fa-user-circle" aria-hidden="true"></i> Event Name</span>
+                      <i class="fa fa-calendar-o" aria-hidden="true"></i> Event Name</span>
                   <input type="text" id="createventname" name="name" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="event.name" required #name="ngModel" >                    
               </label> 
               <div *ngIf="name.invalid && (name.touched || createForm.submitted)" class="alert alert-danger">
@@ -22,7 +22,7 @@
           <div class="col-sm-4 col-sm-offset-2">
               <label class="input-group" for="createcity">
                   <span class="input-group-addon" id="basic-addon1">
-                      <i class="fa fa-id-card" aria-hidden="true"></i> City</span>
+                      <i class="fa fa-location-arrow" aria-hidden="true"></i> City</span>
                   <input type="text" id="createcity" name="city" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="event.city" required #city="ngModel" >                    
               </label>
               <div *ngIf="city.invalid && (city.touched || createForm.submitted)" class="alert alert-danger">
@@ -39,8 +39,8 @@
           <div class="col-sm-4 col-sm-offset-1">
               <label class="input-group" for="createdate">
                   <span class="input-group-addon" id="basic-addon1">
-                      <i class="fa fa-envelope" aria-hidden="true"></i> Date</span>
-                  <input type="text" id="createdate" name="date" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="event.date"
+                      <i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
+                  <input type="datetime-local" id="createdate" name="date" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="event.date"
                       required #date="ngModel" >                        
               </label>
               <div *ngIf="date.invalid && (date.touched || createForm.submitted)" class="alert alert-danger">

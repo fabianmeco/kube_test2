@@ -1,53 +1,55 @@
 <div class="container">
-    
-        <ngb-alert *ngIf="!alertopen" [type]="alertType" (close)="alertClose()">{{ message }}</ngb-alert>
-        <!-- <ngb-alert *ngIf="showSuccessMessage" type="success" (close)="alertClose()">{{successMessage}}</ngb-alert>         -->
-        <div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible show" role="alert">
-          {{successMessage}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (close)="onShowMessageClose()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      
+
+  <ngb-alert *ngIf="!alertopen" [type]="alertType" (close)="alertClose()">{{ message }}</ngb-alert>
+  <!-- <ngb-alert *ngIf="showSuccessMessage" type="success" (close)="alertClose()">{{successMessage}}</ngb-alert>         -->
+  <div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible show" role="alert">
+    {{successMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (close)="onShowMessageClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
   <div class="row">
     <div class="col-sm-4 col-sm-offset-1">
-      <div class="input-group">
+      <label class="input-group">
         <span class="input-group-addon" id="basic-addon1">
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
         <input type="text" class="form-control" placeholder="Filter Events" aria-label="Filter Events" aria-describedby="basic-addon1"
-         #eventsFilter (keyup)="onKeyEvent(eventsFilter.value)">
-      </div>
-      <div>
-        <label for="sel1">Events:</label>
+          #eventsFilter (keyup)="onKeyEvent(eventsFilter.value)">
+      </label>
+      <label class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          Events:
+        </span>
         <select class="form-control" id="sel1" [(ngModel)]="event_id" (ngModelChange)="onChangeEvent()">
           <option *ngFor="let event of filterEvents" value="{{event.id}}">{{event.name}}, {{event.city}}, {{event.date}}</option>
         </select>
-      </div>
+      </label>
       <div class="seat">
-        <div class="input-group">
+        <label class="input-group">
           <span class="input-group-addon" id="basic-addon1">Seat</span>
           <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="seat">
-        </div>
+        </label>
       </div>
     </div>
     <div class="col-sm-4 col-sm-offset-2">
-      <div class="input-group">
+      <label class="input-group">
         <span class="input-group-addon" id="basic-addon1">
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
         <input type="text" class="form-control" placeholder="Filter Users" aria-label="Filter User" aria-describedby="basic-addon1"
           #userFilter (keyup)="onKeyUser(userFilter.value)">
-      </div>
-      <div>
-        <label for="sel1">Users:</label>
+      </label>
+      <label class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Users:</span>
         <select class="form-control" id="sel1" [(ngModel)]="user_id" (ngModelChange)="onChangeUser()">
           <option *ngFor="let user of filterUsers" value="{{user.id}}">{{user.name}}, {{user.email}}, {{user.cid}}</option>
         </select>
-      </div>
-      <div class="seat">
+      </label>
+      <div class="input-group">
         <button type="button" class="btn btn-primary" (click)="onClickForm()" *ngIf="hideForm">Create User</button>
-        <button type="button" class="btn btn-success" (click)="onClickCreateTicket()" *ngIf="hiddenCreateTicket">Create Ticket</button>        
+        <button type="button" class="btn btn-success" (click)="onClickCreateTicket()" *ngIf="hiddenCreateTicket">Create Ticket</button>
       </div>
     </div>
   </div>

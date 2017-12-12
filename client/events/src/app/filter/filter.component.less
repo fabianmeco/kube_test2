@@ -1,3 +1,6 @@
+.input-group{
+    padding-top: 40px
+}
 .container{
     border: solid 1px black;
     padding-bottom: 40px;
@@ -5,9 +8,13 @@
     margin-top: 20px;
 
 }
-.row{
-    padding-top: 40px
-}
-.seat{
-    padding-top: 20px
-}
+.ng-valid[required], .ng-valid.required  {
+    border-right: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-right: 5px solid #a94442; /* red */
+  }
+  .is-invalid{
+      border-color: #dc3545
+  }
