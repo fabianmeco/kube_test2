@@ -1,0 +1,66 @@
+<div class="container">
+  <p>
+      <ngb-alert *ngIf="!alertopen" [type]="alertType" (close)="alertClose()">{{ message }}</ngb-alert>
+  </p>
+  <form (ngSubmit)="onSaveEvent()" #createForm="ngForm">
+      <div class="row">
+          <div class="col-sm-4 col-sm-offset-1">
+              <label class="input-group" for="createventname">
+                  <span class="input-group-addon" id="basic-addon1">
+                      <i class="fa fa-user-circle" aria-hidden="true"></i> Event Name</span>
+                  <input type="text" id="createventname" name="name" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="event.name" required #name="ngModel" >                    
+              </label> 
+              <div *ngIf="name.invalid && (name.touched || createForm.submitted)" class="alert alert-danger">
+                  <div *ngIf="name.errors.serverError" >
+                      {{errors['name']}}
+                  </div>
+                  <div *ngIf="name.errors.required">
+                      The event name is required to register an event
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-4 col-sm-offset-2">
+              <label class="input-group" for="createcity">
+                  <span class="input-group-addon" id="basic-addon1">
+                      <i class="fa fa-id-card" aria-hidden="true"></i> City</span>
+                  <input type="text" id="createcity" name="city" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="event.city" required #city="ngModel" >                    
+              </label>
+              <div *ngIf="city.invalid && (city.touched || createForm.submitted)" class="alert alert-danger">
+                  <div *ngIf="city.errors.serverError" >
+                      {{errors['city']}}
+                  </div>
+                  <div *ngIf="city.errors.required">
+                      The city name is required to register an event
+                  </div>
+              </div>              
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-4 col-sm-offset-1">
+              <label class="input-group" for="createdate">
+                  <span class="input-group-addon" id="basic-addon1">
+                      <i class="fa fa-envelope" aria-hidden="true"></i> Date</span>
+                  <input type="text" id="createdate" name="date" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="event.date"
+                      required #date="ngModel" >                        
+              </label>
+              <div *ngIf="date.invalid && (date.touched || createForm.submitted)" class="alert alert-danger">
+                  <div *ngIf="date.errors.serverError" >
+                      {{errors['date']}}
+                  </div>
+                  <div *ngIf="date.errors.required">
+                      The date field is required to register an event
+                  </div>                    
+              </div>
+          </div>
+          
+      </div>
+      <div class="row">
+          <div class="col-sm-3 col-sm-offset-5">
+              <div class="btn-group">
+                  <button type="submit" class="btn btn-success">Save Event</button>
+                  <button type="button" class="btn btn-warning" (click)="onCancelSave()">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </form>
+</div>

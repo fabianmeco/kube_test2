@@ -8,6 +8,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CreateAssistComponent } from './create-assist/create-assist.component';
 import { FilterComponent } from './filter/filter.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 
 
@@ -15,7 +16,8 @@ import { FilterComponent } from './filter/filter.component';
   declarations: [
     AppComponent,
     CreateAssistComponent,
-    FilterComponent
+    FilterComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
